@@ -24,7 +24,7 @@ module ReportsKit
 
     def render
       data = { properties: properties.slice(:format), path: reports_data_path, report_class: js_report_class }
-      view_context.content_tag :div, nil, class: 'reports_kit_report form-inline', data: data do
+      view_context.content_tag :div, nil, class: 'reports_kit_report form-horizontal', data: data do
         elements = []
         elements << view_context.capture(self, &block) if block
         elements << view_context.content_tag(:div, nil, class: 'reports_kit_visualization')
@@ -53,7 +53,7 @@ module ReportsKit
         role: 'reports_kit_export_button',
         path: view_context.reports_kit.reports_kit_reports_path({ format: format }.merge(additional_params))
       }
-      options = { class: 'btn btn-primary', data: data }.merge(options)
+      options = { class: 'btn btn-primary m-r', data: data }.merge(options)
       if block_given?
         view_context.link_to('#', options, &block)
       else

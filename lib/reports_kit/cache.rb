@@ -5,7 +5,7 @@ module ReportsKit
     def self.get(properties, context_record)
       return unless store
       key = self.key(properties, context_record)
-      json_string = store.get(key)
+      json_string = store.fetch(key)
       return if json_string.blank?
       ActiveSupport::JSON.decode(json_string)
     end
@@ -14,7 +14,8 @@ module ReportsKit
       return unless store
       key = self.key(properties, context_record)
       json_string = ActiveSupport::JSON.encode(data)
-      store.setex(key, duration, json_string)
+      # store.setex(key, duration, json_string)
+      store.fetch(key, expires_in: duration)
     end
 
     private
@@ -31,7 +32,8 @@ module ReportsKit
     end
 
     def self.store
-      @store ||= ReportsKit.configuration.cache_store
+      # @store ||= ReportsKit.configuration.cache_store
+      @store = Rails.cache
     end
   end
 end

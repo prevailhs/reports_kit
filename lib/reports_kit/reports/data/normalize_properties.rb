@@ -18,6 +18,7 @@ module ReportsKit
 
         def normalize_filters(series_properties, ui_filters)
           series_properties[:filters] = series_properties[:filters].map do |filter_properties|
+            filter_properties = filter_properties.dup.deep_symbolize_keys
             filter_properties = { key: filter_properties } if filter_properties.is_a?(String)
             key = filter_properties[:key]
             ui_key = filter_properties[:ui_key]

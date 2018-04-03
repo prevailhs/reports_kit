@@ -11,7 +11,8 @@ module ReportsKit
           when 'include'
             records.where(column => value)
           when 'does_not_include'
-            records.where.not(column => value)
+            # records.where.not(column => value)
+            records.where("#{column} != value")
           else
             raise ArgumentError.new("Unsupported operator: '#{criteria[:operator]}'")
           end

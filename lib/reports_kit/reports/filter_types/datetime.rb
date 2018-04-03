@@ -10,7 +10,8 @@ module ReportsKit
         def apply_conditions(records)
           case criteria[:operator]
           when 'between'
-            records.where.not(column => nil).where(column => start_at..end_at)
+            # records.where.not(column => nil).where(column => start_at..end_at)
+            records.where(column => start_at..end_at).where("#{column} IS NOT NULL")
           else
             raise ArgumentError.new("Unsupported operator: '#{criteria[:operator]}'")
           end

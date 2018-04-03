@@ -2,7 +2,7 @@ module ReportsKit
   class FormBuilder
     include ActionView::Helpers
 
-    DEFAULT_DATE_RANGE_VALUE = ['-2M', 'now']
+    DEFAULT_DATE_RANGE_VALUE = ['-1d', 'now']
 
     attr_accessor :properties, :additional_params, :context_record, :properties_to_filter
 
