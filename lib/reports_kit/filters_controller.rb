@@ -1,6 +1,6 @@
 module ReportsKit
   class FiltersController < ReportsKit::BaseController
-    before_action :modify_context_params
+    before_filter :modify_context_params
 
     def autocomplete
       properties = Reports::Properties.generate(self)

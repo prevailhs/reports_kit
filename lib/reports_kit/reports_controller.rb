@@ -3,7 +3,7 @@ require 'spreadsheet'
 
 module ReportsKit
   class ReportsController < ReportsKit::BaseController
-    before_action :modify_context_params
+    before_filter :modify_context_params
 
     VALID_PARAMS_PROPERTIES_KEYS = [:ui_filters]
 
