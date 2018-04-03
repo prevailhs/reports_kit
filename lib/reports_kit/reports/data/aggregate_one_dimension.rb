@@ -22,7 +22,8 @@ module ReportsKit
           relation = relation.limit(dimension.dimension_instances_limit) if dimension.dimension_instances_limit
           relation = relation.order(order)
           relation = series.edit_relation_method.call(relation) if series.edit_relation_method
-          dimension_keys_values = relation.distinct.public_send(*series.aggregate_function)
+          # dimension_keys_values = relation.distinct.public_send(*series.aggregate_function)
+          dimension_keys_values = relation.public_send(*series.aggregate_function)
           dimension_keys_values = Utils.populate_sparse_hash(dimension_keys_values, dimension: dimension)
           dimension_keys_values.delete(nil)
           dimension_keys_values.delete('')
